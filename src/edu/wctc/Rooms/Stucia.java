@@ -8,6 +8,7 @@ public class Stucia extends Room implements Interactable, Lootable {
 
     boolean sword = false;
     boolean goblin = false;
+    boolean claw = false;
 
     public Stucia(String name) {
         super(name);
@@ -43,17 +44,19 @@ public class Stucia extends Room implements Interactable, Lootable {
             return "You look around for something of interest to pick up and come across an Old Rusty Sword inside a barrel.\n";
         }
 
-        if (goblin){
+        if (goblin && !claw){
+            claw = true;
             loot.addToScore(10);
             loot.addToInventory("Goblin Claw");
             return "You decide to take a claw from the goblin as proof of your deeds.\n";
         }
 
-        return "There seems to be nothing worth picking up.\n";
+        return "There is nothing to loot here.\n";
     }
 
     public void resetRoom(){
         sword = false;
         goblin = false;
+        claw = false;
     }
 }

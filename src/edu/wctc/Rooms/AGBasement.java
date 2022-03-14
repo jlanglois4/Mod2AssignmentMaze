@@ -10,6 +10,7 @@ import java.util.List;
 public class AGBasement extends Room implements Interactable, Lootable, Exitable {
 
     boolean canExit = false;
+    boolean potion = false;
 
     public AGBasement(String name) {
         super(name);
@@ -50,12 +51,19 @@ public class AGBasement extends Room implements Interactable, Lootable, Exitable
 
     @Override
     public String loot(Player loot) {
-        loot.addToScore(15);
-        loot.addToInventory("Healing potion");
-        return "You pick up a healing potion.\n";
+
+        if (!potion){
+            loot.addToScore(15);
+            loot.addToInventory("Healing potion");
+            return "You pick up a healing potion.\n";
+        }
+
+        return "There is nothing to loot here.\n";
+
     }
 
     public void resetRoom() {
         canExit = false;
+        potion = false;
     }
 }
