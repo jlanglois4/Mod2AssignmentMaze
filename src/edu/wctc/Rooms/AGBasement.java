@@ -53,6 +53,7 @@ public class AGBasement extends Room implements Interactable, Lootable, Exitable
     public String loot(Player loot) {
 
         if (!potion){
+            potion = true;
             loot.addToScore(15);
             loot.addToInventory("Healing potion");
             return "You pick up a healing potion.\n";
